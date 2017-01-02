@@ -9,7 +9,7 @@
 #include "Mush.h"
 #include "Stage.h"
 #include "Drender.h"
-#include "Weather.h"
+#include "TextureLoad.h"
 
 class CMainGameScene :
 	public CScene
@@ -37,7 +37,6 @@ public:
 	void SetStage();
 private:
 	CSpotLight		m_light;
-	CWeather		m_Weather;
 	CExitCube		drender;
 	CPlayer			m_player;
 	CCamera			m_Camera;
@@ -47,11 +46,11 @@ private:
 	CBlock			m_Block[1000];
 	Point2f			m_ptPos			{100,100}	;
 	CTextureLibraray m_texLib;
+	CTextureLoad m_Text;
 	CTextureLibraray m_texLogo;
 	CTextureLibraray m_End;
 	bool isEnd = false;
 	bool isClear = false;
-	int Weathertpye=0;
 	int block_count = 0;
 	int wall_count = 0;
 	int mush_count = 0;

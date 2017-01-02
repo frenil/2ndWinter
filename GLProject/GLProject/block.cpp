@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "block.h"
-
+#include "TextureLoad.h"
 
 
 CBlock::CBlock()
@@ -14,22 +14,43 @@ CBlock::~CBlock()
 
 void CBlock::SetBlockPos(Vec3f input)
 {
+	
 	vertex = 100 * input;
 }
 
 
-void CBlock::DrawBolck()
+void CBlock::DrawBolck(CTextureLibraray m_Block)
 {
-	GLUquadricObj* cyl;
-	cyl = gluNewQuadric();
 	glPushMatrix();
-	{		glColor4f(1,1,1,1);
+	{
+		CTextureLibraray::UsingTexture2D();
+		{
+			glColor4f(1, 1, 1, 1);
+			m_Block.LoadTexture(0);
 
 			glTranslatef(vertex.x, vertex.y, vertex.z);
-			glScalef(size.x, size.y, size.z);
-			render.DrawBrick_FUNC();
-
+			DrawQuad({ 0,0,-50 }, 100, true);
+			DrawQuad({ 0,0,50 }, 100, true);
+			
+			glPushMatrix();
+			{
+				glRotatef(90, 0, 1, 0);
+				DrawQuad({ 0,0,-50 }, 100, true);
+				DrawQuad({ 0,0,50 },  100, true);
+			}
+			glPopMatrix();
+			glPushMatrix();
+			{
+				glRotatef(90, 1, 0, 0);
+				DrawQuad({ 0,0,-50 }, 100, true);
+				DrawQuad({ 0,0,50 },  100, true);
+			}
+			glPopMatrix();
+			m_Wall.DisableTexture(0);
 		}
-		glPopMatrix();
+		CTextureLibraray::StopUsingTexture2D();
+
+	}
+	glPopMatrix();
 }
 

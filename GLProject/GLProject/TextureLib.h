@@ -42,7 +42,7 @@ public:
 	void SetTexture(LPCTSTR str);
 	
 	void LoadTexture(size_t idx = 0);
-
+	void DisableTexture(size_t idx = 0);
 	template<typename Fn>
 	void Draw(size_t idx, Fn&& func)
 	{

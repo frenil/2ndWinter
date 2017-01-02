@@ -3,7 +3,7 @@
 #include <gl/glut.h>
 
 #include <iostream>
-#include<fstream>
+#include <fstream>
 #include <cassert>
 #include <ctime>
 
@@ -92,6 +92,89 @@ inline void DrawQuad(const Vec3f& ptPosition, float fScale, bool isXY = false) {
 			glTexCoord2f(1.0f, +1.0f);
 			glVertex3f(+fx, +fy, -fz);
 
+		}
+		glEnd();
+	}
+	glPopMatrix();
+}
+
+inline void DrawQube(const Vec3f& ptPosition, Vec3f fScale) {
+	glPushMatrix();
+	{
+		glTranslatef(ptPosition.x, ptPosition.y, ptPosition.z);
+		float fx = fScale.x *0.5f;
+		float fy = fScale.y *0.5f;
+		float fz = fScale.z * 0.5f;
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(0.0f, +1.0f);
+			glVertex3f(-fx, +fy, -fz);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-fx, -fy, -fz);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(+fx, -fy, -fz);
+			glTexCoord2f(1.0f, +1.0f);
+			glVertex3f(+fx, +fy, -fz);
+		}
+		glEnd();
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(0.0f, +1.0f);
+			glVertex3f(-fx, +fy, fz);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-fx, -fy, fz);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(+fx, -fy, fz);
+			glTexCoord2f(1.0f, +1.0f);
+			glVertex3f(+fx, +fy, fz);
+		}
+		glEnd();
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(0.0f, +1.0f);
+			glVertex3f(-fx, -fy, +fz);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-fx, -fy, -fz);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(+fx, -fy, -fz);
+			glTexCoord2f(1.0f, +1.0f);
+			glVertex3f(+fx, -fy, +fz);
+		}
+		glEnd();
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(0.0f, +1.0f);
+			glVertex3f(-fx, +fy, +fz);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-fx, +fy, -fz);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(+fx, +fy, -fz);
+			glTexCoord2f(1.0f, +1.0f);
+			glVertex3f(+fx, +fy, +fz);
+		}
+		glEnd();
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(0.0f, +1.0f);
+			glVertex3f(+fx, -fy, +fz);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(+fx, -fy, -fz);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(+fx, +fy, -fz);
+			glTexCoord2f(1.0f, +1.0f);
+			glVertex3f(+fx, +fy, +fz);
+		}
+		glEnd();
+		glBegin(GL_QUADS);
+		{
+			glTexCoord2f(0.0f, +1.0f);
+			glVertex3f(-fx, -fy, +fz);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-fx, -fy, -fz);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(-fx, +fy, -fz);
+			glTexCoord2f(1.0f, +1.0f);
+			glVertex3f(-fx, +fy, +fz);
 		}
 		glEnd();
 	}

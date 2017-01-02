@@ -28,18 +28,27 @@ void CWall::Update()
 
 void CWall::SetWallPos(Vec3f a)
 {
-	position.x =vertex.x = a.x * 100;
-	position.y =vertex.y = a.y * 100;
-	position.z =vertex.z = a.z * 100;
+	position.x = vertex.x = a.x * 100;
+	position.y = vertex.y = a.y * 100;
+	position.z = vertex.z = a.z * 100;
 }
 
-void CWall::DrawWall()
+void CWall::DrawWall(CTextureLibraray m_Wall)
 {
 	glPushMatrix();
 	{
-		glTranslatef(vertex.x, vertex.y, vertex.z);
-		glScalef(size.x, size.y, size.z);
-		render.DrawBrick_FUNC();
+
+		CTextureLibraray::UsingTexture2D();
+		{
+			glColor4f(1, 1, 1, 1);
+			m_Wall.LoadTexture(0);
+
+			DrawQube(vertex, size);
+			
+			m_Wall.DisableTexture(0);
+		}
+		CTextureLibraray::StopUsingTexture2D();
+
 	}
 	glPopMatrix();
 }

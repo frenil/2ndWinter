@@ -46,14 +46,11 @@
     <Filter Include="Object\Wall\Texture">
       <UniqueIdentifier>{ce7baddb-f938-4f9e-914b-457464926dec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Block\texture">
-      <UniqueIdentifier>{b156620f-f095-4d81-add8-42e9a50c3790}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Mush\Texture">
-      <UniqueIdentifier>{04e3450e-5418-420d-95c4-e8c4d272ee8d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Logo">
       <UniqueIdentifier>{4fdba4df-fc15-4248-93e7-d878fc3b8fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{956e2e36-6eeb-403a-b8d3-113573c1ab5d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,22 +93,16 @@
     <ClCompile Include="Character.cpp">
       <Filter>Object\Player\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Wrender.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Brender.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Mrender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Drender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Weather.cpp">
+    <ClCompile Include="Light.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
+    <ClCompile Include="TextureLoad.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,9 +125,6 @@
     <ClInclude Include="Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TextureLib.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="block.h">
       <Filter>Object\Block</Filter>
     </ClInclude>
@@ -155,17 +143,11 @@
     <ClInclude Include="Character.h">
       <Filter>Object\Player\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Wrender.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalDefine.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="GetTexture.h">
       <Filter>Object\Wall\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Brender.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Mrender.h">
       <Filter>헤더 파일</Filter>
@@ -173,10 +155,13 @@
     <ClInclude Include="Drender.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Weather.h">
+    <ClInclude Include="Light.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
+    <ClInclude Include="TextureLoad.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLib.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

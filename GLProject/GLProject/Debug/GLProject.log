@@ -1,5 +1,8 @@
-﻿  MainGameScene.cpp
-c:\users\hwihyun\desktop\슈퍼마리오\glproject\glproject\gettexture.h(26): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-  GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\슈퍼마리오\GLProject\Debug\GLProject.exe
-  GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\슈퍼마리오\GLProject\Debug\GLProject.pdb (Full PDB)
+﻿  TitleScene.cpp
+d:\opengl\2ndwinter\glproject\glproject\gettexture.h(26): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 'fopen' 선언을 참조하십시오.
+  MainGameScene.cpp
+d:\opengl\2ndwinter\glproject\glproject\gettexture.h(26): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 'fopen' 선언을 참조하십시오.
+  GLProject.vcxproj -> D:\OPENGL\2ndWinter\GLProject\Debug\GLProject.exe
+  GLProject.vcxproj -> D:\OPENGL\2ndWinter\GLProject\Debug\GLProject.pdb (Full PDB)

@@ -183,14 +183,7 @@ void CMainGameScene::Update()
 				m_Mush[i].Live();
 			}
 		}
-		m_Weather.update_weather(Weathertpye);
 		m_player.Update();
-		//if (ViewType == 0) {// 조명 구현중 실패
-		//	m_light.Light( m_player.GetPosition(), true);
-		//}
-		//else {
-		//	m_light.Light( m_player.GetPosition(), false);
-		//}
 		m_Camera.SetView(ViewType, m_player.GetPosition());
 
 		Ctype = ResetCollide();
@@ -226,17 +219,17 @@ void CMainGameScene::Update()
 void CMainGameScene::Render()
 {
 	if (!isEnd) {
-		for (int i = 0; i < block_count; i++) {
-			m_Block[i].DrawBolck();
-		}
+		
 		for (int i = 0; i < wall_count; i++) {
-			m_wall[i].DrawWall();
+			m_wall[i].DrawWall(m_Text.GetWallTexture());
 		}
 		for (int i = 0; i < mush_count; i++) {
 			m_Mush[i].DrawMush();
 		}
+		for (int i = 0; i < block_count; i++) {
+			m_Block[i].DrawBolck(m_Text.GetBlockTexture());
+		}
 		RenderDestinate();
-		m_Weather.draw_weather(Weathertpye);
 		m_player.Render(ViewType);
 	}
 	else {
@@ -299,15 +292,6 @@ void CMainGameScene::Mouse(int button, int state, int x, int y)
 void CMainGameScene::Keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
-	case '1':
-		Weathertpye = 1;
-		break;
-	case '2':
-		Weathertpye = 2;
-		break;
-	case '3':
-		Weathertpye = 3;
-		break;
 	case ' ':
 		if (isEnd) {
 			m_pMasterFramework->BuildScene<CTitleScene>();
@@ -419,8 +403,8 @@ void CMainGameScene::BuildScene(CGLFramework * pframework, int tag)
 	CScene::BuildScene(pframework, tag);
 	glClearColor(0.5, 0.5, 0.8, 1);
 	SetStage();
-	m_Weather.init_weather(true);
 	ChangeStage();
+	m_Text.Loading();
 	m_End.SetTexture(L"image/Clear.png");
 
 }

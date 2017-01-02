@@ -50,6 +50,11 @@ void CTextureLibraray::LoadTexture(size_t idx)
 	glBindTexture(GL_TEXTURE_2D, m_vTexData[idx].textureIndex);
 }
 
+void CTextureLibraray::DisableTexture(size_t idx)
+{
+	glDisable(GL_TEXTURE_2D);
+}
+
 std::vector<GLubyte> GetCImageBits(const CImage & Cimg)
 {
 	// ¸®ÅÏ°ª

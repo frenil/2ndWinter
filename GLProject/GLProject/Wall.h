@@ -1,11 +1,10 @@
 #pragma once
 #include "stdafx.h"
 #include "Vector3D.h"
-#include "Wrender.h"
+#include "TextureLib.h"
 class CWall
 {
 private:
-	CWrender render;
 	Vec3f position;
 	Vec3f vertex;
 	Vec3f size		{ 100,500,100 };
@@ -18,7 +17,7 @@ public:
 	void SetWallPos(Vec3f a);
 	Vec3f GetWallPos() { return vertex; }
 	Vec3f GetSize() { return size; }
-	void DrawWall();
+	void DrawWall(CTextureLibraray m_Wall);
 };
 
 
