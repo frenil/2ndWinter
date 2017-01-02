@@ -1,5 +1,4 @@
 #pragma once
-#include "Light.h"
 #include "Scene.h"
 #include "Camera.h"
 #include "TextureLib.h"
@@ -36,7 +35,6 @@ public:
 	COLLIDETYPE ResetCollide() {return COLLIDETYPE{ false,false, false, false }; }
 	void SetStage();
 private:
-	CSpotLight		m_light;
 	CExitCube		drender;
 	CPlayer			m_player;
 	CCamera			m_Camera;

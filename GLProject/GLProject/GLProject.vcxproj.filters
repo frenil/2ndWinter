@@ -99,9 +99,6 @@
     <ClCompile Include="Drender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="TextureLoad.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -153,9 +150,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Drender.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="TextureLoad.h">
