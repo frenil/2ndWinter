@@ -1,0 +1,6 @@
+﻿  TitleScene.cpp
+  Scene.cpp
+  MainGameScene.cpp
+  main.cpp
+  GLFramework.cpp
+LINK : fatal error LNK1104: cannot open file 'glut32.lib'
