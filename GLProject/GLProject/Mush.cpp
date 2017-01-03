@@ -28,9 +28,9 @@ void CMush::DrawMush()
 		glPushMatrix();
 		{
 			glColor3f(1, 1, 0);
-			glTranslatef(vertex.x, vertex.y-50, vertex.z);
-			glScalef(size.x/300, size.y/400, size.z/300);
-			render.DrawMushroom_FUNC();
+			glTranslatef(vertex.x, vertex.y, vertex.z);
+			glScalef(size.x, size.y, size.z);
+			glutSolidCube(1);
 		}
 		glPopMatrix();
 	}
