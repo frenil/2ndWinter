@@ -90,9 +90,6 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Object\Wall</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Object\Player\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Mrender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -136,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="Wall.h">
       <Filter>Object\Wall</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Object\Player\Render</Filter>
     </ClInclude>
     <ClInclude Include="GlobalDefine.h">
       <Filter>헤더 파일</Filter>

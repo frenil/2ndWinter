@@ -144,7 +144,6 @@
   <ItemGroup>
     <ClCompile Include="block.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Drender.cpp" />
     <ClCompile Include="GLFramework.cpp" />
     <ClCompile Include="main.cpp" />
@@ -162,7 +161,6 @@
   <ItemGroup>
     <ClInclude Include="block.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Character.h" />
     <ClInclude Include="Drender.h" />
     <ClInclude Include="GetTexture.h" />
     <ClInclude Include="GLFramework.h" />

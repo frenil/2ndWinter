@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "Character.h"
 CPlayer::CPlayer()
 {
 	player_state = 0;
@@ -42,7 +41,6 @@ void CPlayer::Update()
 	}
 	else player_state = 0;
 
-	render.update_character(player_state);
 
 	
 }
@@ -73,7 +71,9 @@ void CPlayer::Render(int view)
 		glColor3f(1.f, 0.37f, 0.37f);
 		glTranslatef(position.x, position.y, position.z);
 		glScalef(size.x, size.y , size.z );
-		glutSolidCube(1);
+		glutSolidSphere(0.5, 18, 18);
+		glColor3f(1.f, 0.f, 0.f);
+		glutWireSphere(0.5,18,18);
 	}
 	glPopMatrix();
 }

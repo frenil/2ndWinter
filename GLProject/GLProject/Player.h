@@ -1,9 +1,7 @@
 #pragma once
 #include "stdafx.h"
-#include "Character.h"
 class CPlayer
 {
-	Character render;
 	Vec3f preposition;
 	Vec3f position	;
 	Vec3f SavePos	;
