@@ -11,7 +11,6 @@ class CPlayer
 	bool isDie		{ false };
 	float Yspeed	{ 0 };
 	float Speed	;
-	int player_state;
 	int die_count	{ 0 };
 	int jump_count	{ 0 };
 public:
@@ -20,9 +19,37 @@ public:
 	void Update();
 	void SetSpeed(int x){ Yspeed = x; }
 	void Jump();
-	void Move_X(int x) { movevec.x = x; }
-	void Move_Y(int y) { movevec.y = y; }
-	void Move_Z(int z) { movevec.z = z; }
+	void Move_X(int x) {
+		if (movevec.x != 0 && x == 0)
+			movevec.x = 0;
+		else if (movevec.x < x) {
+			movevec.x += 0.2;
+			if (movevec.x >= x)
+				movevec.x = x;
+		}
+		else if (movevec.x > x) {
+			movevec.x -= 0.2;
+			if (movevec.x <= x)
+				movevec.x = x;
+		}
+		movevec = Nomalize(movevec);
+
+	}
+	void Move_Z(int z) {
+		if (movevec.z != 0 && z == 0)
+			movevec.z = 0;
+		else if (movevec.z < z) {
+			movevec.z += 0.2;
+			if (movevec.z >= z)
+				movevec.z = z;
+		}
+		else if (movevec.z > z) {
+			movevec.z -= 0.2;
+			if (movevec.z <= z)
+				movevec.z = z;
+		}
+	//	movevec = Nomalize(movevec);
+	}
 	void MoveBackX() {
 		position.x = preposition.x;
 	}

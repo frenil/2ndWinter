@@ -2,8 +2,8 @@
 #include "Player.h"
 CPlayer::CPlayer()
 {
-	player_state = 0;
 	size = {100, 100, 100};
+	movevec = { 0,0,0 };
 }
 
 CPlayer::~CPlayer()
@@ -33,13 +33,6 @@ void CPlayer::Update()
 		Yspeed = 0;
 		position =  SavePos* 100;
 	}
-	if (!onBlock) {
-		player_state = 2;
-	}
-	else if (movevec.x != 0 || movevec.z != 0) {
-		player_state = 1;
-	}
-	else player_state = 0;
 
 
 	
@@ -59,7 +52,6 @@ void CPlayer::RenderDie()
 	glPushMatrix();
 	{
 		glTranslatef(position.x, position.y, position.z);
-
 	}
 	glPopMatrix();
 }

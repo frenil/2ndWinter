@@ -45,6 +45,13 @@ constexpr inline GLKeyStateCombine GetMouseState(int button, int state) noexcept
 
 constexpr inline float DegreeToRadian(float degree) noexcept { return degree * PI * 0.005555; }
 
+inline Vec3f Nomalize(Vec3f vec) 
+{
+	if(0==vec.x && 0 == vec.y&&0 == vec.z)
+		return vec;
+	else return vec *(1 / (sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2)))); 
+}
+
 inline void DrawRectangle(float x, float y, float scale)
 {
 	glBegin(GL_POLYGON);
