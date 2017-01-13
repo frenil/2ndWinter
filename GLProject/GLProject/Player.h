@@ -7,10 +7,12 @@ class CPlayer
 	Vec3f SavePos	;
 	Vec3f movevec	{	0,   0,   0	};
 	Vec3f size ;
+	GLfloat Mat[16];
 	bool onBlock	{ true };
 	bool isDie		{ false };
 	float Yspeed	{ 0 };
 	float Speed	;
+	int rotate_rad;
 	int die_count	{ 0 };
 	int jump_count	{ 0 };
 public:
@@ -20,35 +22,12 @@ public:
 	void SetSpeed(int x){ Yspeed = x; }
 	void Jump();
 	void Move_X(int x) {
-		if (movevec.x != 0 && x == 0)
-			movevec.x = 0;
-		else if (movevec.x < x) {
-			movevec.x += 0.2;
-			if (movevec.x >= x)
-				movevec.x = x;
-		}
-		else if (movevec.x > x) {
-			movevec.x -= 0.2;
-			if (movevec.x <= x)
-				movevec.x = x;
-		}
-		movevec = Nomalize(movevec);
-
+		movevec.x = x;
+		cout << movevec.x << "   " << movevec.z << endl;
 	}
 	void Move_Z(int z) {
-		if (movevec.z != 0 && z == 0)
-			movevec.z = 0;
-		else if (movevec.z < z) {
-			movevec.z += 0.2;
-			if (movevec.z >= z)
-				movevec.z = z;
-		}
-		else if (movevec.z > z) {
-			movevec.z -= 0.2;
-			if (movevec.z <= z)
-				movevec.z = z;
-		}
-	//	movevec = Nomalize(movevec);
+		movevec.z = z;
+		cout << movevec.x << "   " << movevec.z << endl;
 	}
 	void MoveBackX() {
 		position.x = preposition.x;

@@ -9,6 +9,7 @@
 
 #include "Vector3D.h"
 
+using namespace std;
 using std::ifstream;
 using std::ofstream;
 
