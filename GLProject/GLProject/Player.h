@@ -21,13 +21,12 @@ public:
 	void Update();
 	void SetSpeed(int x){ Yspeed = x; }
 	void Jump();
+	void init();
 	void Move_X(int x) {
 		movevec.x = x;
-		cout << movevec.x << "   " << movevec.z << endl;
 	}
 	void Move_Z(int z) {
 		movevec.z = z;
-		cout << movevec.x << "   " << movevec.z << endl;
 	}
 	void MoveBackX() {
 		position.x = preposition.x;

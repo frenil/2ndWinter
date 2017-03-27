@@ -93,10 +93,10 @@
     <ClCompile Include="Mrender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Drender.cpp">
+    <ClCompile Include="TextureLoad.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TextureLoad.cpp">
+    <ClCompile Include="Drender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,13 +143,13 @@
     <ClInclude Include="Mrender.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Drender.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="TextureLoad.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="TextureLib.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Drender.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

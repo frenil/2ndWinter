@@ -200,6 +200,7 @@ void CMainGameScene::Update()
 			else {
 				ChangeStage();
 				isClear = false;
+				m_player.init();
 			}
 		}
 		m_ptPos.x += 10.f;
@@ -238,8 +239,6 @@ void CMainGameScene::Render()
 			auto sz = m_pMasterFramework->GetWindowSize();
 			CTextureLibraray::UsingTexture2D();
 			{
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				m_End.LoadTexture(0);
 
 				glBegin(GL_QUADS);
@@ -250,7 +249,6 @@ void CMainGameScene::Render()
 					glTexCoord2f(1, 1);  glVertex2f(sz.x, 0);
 				}
 				glEnd();
-				glDisable(GL_BLEND);
 			}
 			CTextureLibraray::StopUsingTexture2D();
 
