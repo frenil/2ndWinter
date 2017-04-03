@@ -34,7 +34,7 @@ void CCamera::SetView(int view,Vec3f At)
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		glOrtho(-500+At.x, At.x+ 500, -80, 920, -500, 500);
+		glOrtho(-500+At.x, At.x+ 500, -80, 920, -500, 10000);
 		glMatrixMode(GL_MODELVIEW);
 
 	}
@@ -45,7 +45,7 @@ void CCamera::LookAt()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(60.f, m_faspect, 1.f, 100000.f);
+	gluPerspective(60.f, m_faspect, 100.f, 100000.f);
 	auto eye = m_ptPosition + GetLookVector() *m_fZoom;
 	gluLookAt(eye.x, eye.y, eye.z,
 		m_ptPosition.x, m_ptPosition.y, m_ptPosition.z,

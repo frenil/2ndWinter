@@ -42,8 +42,28 @@ void CWall::DrawWall(CTextureLibraray m_Wall)
 		{
 			glColor4f(1, 1, 1, 1);
 			m_Wall.LoadTexture(0);
-
-			DrawQube(vertex, size);
+			glTranslatef(vertex.x, vertex.y, vertex.z);
+			glPushMatrix();
+			{
+				glScalef(1, size.y / 100, 1);
+				DrawQuad({ 0,0,-50 }, 100, true);
+				DrawQuad({ 0,0,50 }, 100, true);
+			}
+			glPopMatrix(); 
+			glPushMatrix();
+			{
+				glScalef(1, size.y / 100, 1);
+				glRotatef(90, 0, 1, 0);
+				DrawQuad({ 0,0,-50 }, 100, true);
+			}
+			glPopMatrix();
+			glPushMatrix();
+			{
+				glRotatef(90, 1, 0, 0);
+				DrawQuad({ 0,0,-size.y/2 }, 100, true);
+			}
+			glPopMatrix();
+//			DrawQube(vertex, size);
 			
 			m_Wall.DisableTexture(0);
 		}

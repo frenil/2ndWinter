@@ -29,8 +29,22 @@ void CMush::DrawMush()
 		{
 			glColor3f(1, 1, 0);
 			glTranslatef(vertex.x, vertex.y, vertex.z);
-			glScalef(size.x, size.y, size.z);
-			glutSolidCube(1);
+			glRotatef(90, 1, 0, 0);
+			glutSolidTorus(10, 40, 12, 12);
+			glPushMatrix();
+			{
+				glTranslatef(0, 0, -40);
+				glutSolidTorus(10, 40, 12, 12);
+
+			}
+			glPopMatrix();
+			glPushMatrix();
+			{
+				glTranslatef(0, 0, 40);
+				glutSolidTorus(10, 40, 12, 12);
+
+			}
+			glPopMatrix();
 		}
 		glPopMatrix();
 	}

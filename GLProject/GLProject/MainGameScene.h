@@ -29,9 +29,10 @@ public:
 	virtual void BuildScene(	  CGLFramework* pframework
 								, int tag
 	);
-
+	void Sky();
 	void ChangeStage();
 	void RenderDestinate();
+	void Mini(Vec3f player, Vec3f pvec);
 	COLLIDETYPE ResetCollide() {return COLLIDETYPE{ false,false, false, false }; }
 	void SetStage();
 private:

@@ -1,3 +1,5 @@
-﻿  LINK : D:\OPENGL\2ndWinter\GLProject\Debug\GLProject.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
-  GLProject.vcxproj -> D:\OPENGL\2ndWinter\GLProject\Debug\GLProject.exe
-  GLProject.vcxproj -> D:\OPENGL\2ndWinter\GLProject\Debug\GLProject.pdb (Full PDB)
+﻿  Map.cpp
+c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\map.cpp(24): error C2857: /Ycstdafx.h 명령줄 옵션과 함께 지정한 '#include' 문이 소스 파일에 없습니다.
+  MainGameScene.cpp
+c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\gettexture.h(26): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 'fopen' 선언을 참조하십시오.

@@ -12,6 +12,8 @@ class CPlayer
 	bool isDie		{ false };
 	float Yspeed	{ 0 };
 	float Speed	;
+	int angle_annie	{ 0 };
+	int angle_speed	{ 2 };
 	int rotate_rad;
 	int die_count	{ 0 };
 	int jump_count	{ 0 };
@@ -34,13 +36,13 @@ public:
 	void MoveBackZ() {
 		position.z = preposition.z;
 	}
-	void isOnBlock(bool a) { onBlock = a; }
+	void isOnBlock(bool a) { onBlock = a; angle_speed = 10; }
 	bool GetOnBlock() { return onBlock; }
 	void SetPosition(Vec3f pos) {Speed =3; size.x = 90; size.y = 100; size.z = 90; preposition = position = pos; }
 	void SetYPos(float pos) { position.y = pos; }
 	void SetZPos(float pos) { position.z = pos; }
 	
-	void SetJumpCount(int n) { jump_count = n; }
+	void SetJumpCount(int n) { jump_count = n; angle_speed = 2;	}
 	bool GetDie() { return isDie; }
 	void Die() { isDie = true; }
 	void SetSave(Vec3f input) { SavePos = input; }

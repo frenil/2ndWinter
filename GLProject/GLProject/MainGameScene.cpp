@@ -20,10 +20,10 @@ COLLIDETYPE CMainGameScene::Collide(Vec3f player, Vec3f player_size, Vec3f objec
 	object_size *= 0.5;
 	player_size *= 0.5;
 	if (ViewType == 0) {
-		if (player.x - player_size.x > object.x + object_size.x ||
-			player.x + player_size.x < object.x - object_size.x ||
-			player.z - player_size.z > object.z + object_size.z ||
-			player.z + player_size.z < object.z - object_size.z)
+		if (player.x - (player_size.x*0.6) > object.x + object_size.x ||
+			player.x + (player_size.x*0.6) < object.x - object_size.x ||
+			player.z - (player_size.z*0.6) > object.z + object_size.z ||
+			player.z + (player_size.z*0.6) < object.z - object_size.z)
 		{
 		}
 		else {
@@ -36,16 +36,16 @@ COLLIDETYPE CMainGameScene::Collide(Vec3f player, Vec3f player_size, Vec3f objec
 		}
 
 
-		if ((player.x - player_size.x <= object.x + object_size.x&& player.x + player_size.x >= object.x - object_size.x)) {
-			if ((player.z - player_size.z < object.z + object_size.z&&player.z + player_size.z > object.z - object_size.z)) {
+		if ((player.x - (player_size.x*0.6) <= object.x + object_size.x&& player.x + (player_size.x*0.6) >= object.x - object_size.x)) {
+			if ((player.z - (player_size.z*0.6) < object.z + object_size.z&&player.z + (player_size.z*0.6) > object.z - object_size.z)) {
 				if ((player.y - (player_size.y - 10) < object.y + object_size.y&&player.y + (player_size.y - 10) > object.y - object_size.y)) {
 					if (!temp.X)
 						temp.X = true;
 				}
 			}
 		}
-		if ((player.z - player_size.z <= object.z + object_size.z&& player.z + player_size.z >= object.z - object_size.z)) {
-			if ((player.x - player_size.x < object.x + object_size.z&&player.x + player_size.x > object.x - object_size.x)) {
+		if ((player.z - (player_size.z*0.6) <= object.z + object_size.z&& player.z + (player_size.z*0.6) >= object.z - object_size.z)) {
+			if ((player.x - (player_size.x*0.6) < object.x + object_size.z&&player.x + (player_size.x*0.6) > object.x - object_size.x)) {
 				if ((player.y - (player_size.y - 10) < object.y + object_size.y&&player.y + (player_size.y - 10) > object.y - object_size.y)) {
 					if (!temp.Z)
 						temp.Z = true;
@@ -54,31 +54,31 @@ COLLIDETYPE CMainGameScene::Collide(Vec3f player, Vec3f player_size, Vec3f objec
 		}
 	}
 	else if (ViewType == 1) {
-			if (player.x - player_size.x >= object.x + object_size.x ||
-				player.x + player_size.x <= object.x - object_size.x)
-			{
+		if (player.x - (player_size.x*0.6) >= object.x + object_size.x ||
+			player.x + (player_size.x*0.6) <= object.x - object_size.x)
+		{
+		}
+		else {
+			if (player.y + player_size.y > object.y - object_size.y
+				&&player.y - player_size.y < object.y - object_size.y) {
+				if (!temp.DOWN)
+					temp.DOWN = true;
 			}
-			else {
-				if (player.y + player_size.y > object.y - object_size.y
-					&&player.y - player_size.y < object.y - object_size.y) {
-					if (!temp.DOWN)
-						temp.DOWN = true;
-				}
-				if (player.y - player_size.y < object.y + object_size.y
-					&&player.y + player_size.y > object.y + object_size.y) {
-					if (!temp.UP)
-						temp.UP = true;
-				}
-			}
-			if ((player.x - player_size.x < object.x + object_size.x
-				&& player.x + player_size.x >= object.x - object_size.x)) {
-				if ((player.y - (player_size.y - 10) < object.y + object_size.y
-					&&player.y + (player_size.y - 10) > object.y - object_size.y)) {
-					if (!temp.X)
-						temp.X = true;
-				}
+			if (player.y - player_size.y < object.y + object_size.y
+				&&player.y + player_size.y > object.y + object_size.y) {
+				if (!temp.UP)
+					temp.UP = true;
 			}
 		}
+		if ((player.x - (player_size.x*0.6) < object.x + object_size.x
+			&& player.x + (player_size.x*0.6) >= object.x - object_size.x)) {
+			if ((player.y - (player_size.y - 10) < object.y + object_size.y
+				&&player.y + (player_size.y - 10) > object.y - object_size.y)) {
+				if (!temp.X)
+					temp.X = true;
+			}
+		}
+	}
 	return temp;
 }
 
@@ -216,13 +216,15 @@ void CMainGameScene::Update()
 		glMatrixMode(GL_MODELVIEW);
 	}
 }
-
 void CMainGameScene::Render()
 {
 	if (!isEnd) {
-		
+		if (ViewType == 0) {
+			Mini(m_Camera.Getposition(), m_Camera.GetLookVector());
+		}
 		for (int i = 0; i < wall_count; i++) {
-			m_wall[i].DrawWall(m_Text.GetWallTexture());
+			if (ViewType != 0 || (m_wall[i].GetWallPos().x >= m_player.GetPosition().x - 90 && ViewType == 0))
+				m_wall[i].DrawWall(m_Text.GetWallTexture());
 		}
 		for (int i = 0; i < mush_count; i++) {
 			m_Mush[i].DrawMush();
@@ -231,6 +233,7 @@ void CMainGameScene::Render()
 			m_Block[i].DrawBolck(m_Text.GetBlockTexture());
 		}
 		RenderDestinate();
+		Sky();
 		m_player.Render(ViewType);
 	}
 	else {
@@ -301,26 +304,28 @@ void CMainGameScene::Keyboard(unsigned char key, int x, int y)
 				m_player.Move_X(0);
 				m_player.Move_Z(0);
 				m_Camera.SetView(ViewType, m_player.GetPosition());
-			}
-			if (ViewType == 0)
-			{
-				float tempZ = -1000;
-				for (int i = 0; i < block_count; i++) {
-					if (((int)m_player.GetPosition().x + 50) / 100 == ((int)m_Block[i].GetBlockPos().x + 50) / 100
-						&& ((int)m_player.GetPosition().y) / 100 == ((int)m_Block[i].GetBlockPos().y) / 100) {
-						if (tempZ <= m_Block[i].GetBlockPos().z) {
-							tempZ = m_Block[i].GetBlockPos().z;
+
+				if (ViewType == 0)
+				{
+					float tempZ = -1000;
+					for (int i = 0; i < block_count; i++) {
+						if (((int)m_player.GetPosition().x + 50) / 100 == ((int)m_Block[i].GetBlockPos().x + 50) / 100
+							&& ((int)m_player.GetPosition().y) / 100 == ((int)m_Block[i].GetBlockPos().y) / 100) {
+							if (tempZ <= m_Block[i].GetBlockPos().z) {
+								tempZ = m_Block[i].GetBlockPos().z;
+							}
 						}
 					}
-				}
-				m_player.SetZPos(tempZ);
+					m_player.SetZPos(tempZ);
 
+				}
 			}
 		}
 		break;
 	case 'q':
 		isEnd = true;
-
+		m_pMasterFramework->BuildScene<CTitleScene>();
+		glutMainLoop();
 		break;
 	case 'z':
 	case 'Z':
@@ -407,9 +412,31 @@ void CMainGameScene::BuildScene(CGLFramework * pframework, int tag)
 
 }
 
+void CMainGameScene::Sky()
+{
+	glPushMatrix();
+	{
+		CTextureLibraray::UsingTexture2D();
+		{
+			glColor4f(1, 1, 1, 1);
+			m_Text.GetSkyTexture().LoadTexture(0);
+			glTranslatef(800, 500, 0);
+			DrawQuad({ 0,0,-2900 }, 4000, true);
+
+			glRotatef(90, 0, 1, 0);
+			DrawQuad({ 0,0,4000 }, 20000, true);
+
+			m_Text.GetSkyTexture().DisableTexture(0);
+		}
+		CTextureLibraray::StopUsingTexture2D();
+
+	}
+	glPopMatrix();
+}
+
 void CMainGameScene::ChangeStage()
 {
-	mush_count=wall_count=block_count = 0;
+	mush_count = wall_count = block_count = 0;
 	ViewType = 1;
 	m_player.SetPosition(m_stage[stage_number].GetStart());
 	m_player.SetSave(m_stage[stage_number].GetStart());
@@ -441,12 +468,81 @@ void CMainGameScene::RenderDestinate()
 	glPopMatrix();
 }
 
+void CMainGameScene::Mini(Vec3f player, Vec3f pvec)
+{
+	glPushMatrix();{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glPushMatrix();
+	{
+		glTranslatef(player.x + (pvec.x * 100), player.y + (pvec.y * 99), player.z + 50 + (pvec.z * 99));
+		glRotatef(90, 0, 1, 0);
+		glRotatef(30, 1, 0, 0);
+		glTranslatef(0, 50, -10);
+		glRectf(-30, -30, 20, 30);
+	}
+	glPopMatrix();
+
+	glPushMatrix();
+	{
+		glTranslatef(player.x - 5 + (pvec.x * 100), player.y + (pvec.y * 99), player.z + 50 + (pvec.z * 99));
+		glScalef(0.3, 0.3, 0.3);
+		glRotatef(90, 0, 1, 0);
+		glRotatef(30, 1, 0, 0);
+		glPushMatrix();
+		{
+			glTranslatef(-m_player.GetPosition().z / 10,
+				50 + (m_player.GetPosition().x / 10), 0);
+			glColor3f(1, 0, 0);
+			glTranslatef(0, 50, -51);
+			DrawCircle(0, 0, 5, 12);
+		}
+		glPopMatrix();
+		glPushMatrix();
+		{
+			glTranslatef(-m_stage[stage_number].GetDestinate().z / 10,
+				50 + (m_stage[stage_number].GetDestinate().x / 10), 0);
+			glColor3f(1, 1, 0);
+			DrawQuad({ 0,50,-51 }, 7, true);
+		}
+		glPopMatrix();
+		for (int i = 0; i < wall_count; i++) {
+			glPushMatrix();
+			{
+				glTranslatef(-m_wall[i].GetWallPos().z / 10,
+					50+(m_wall[i].GetWallPos().x / 10), 0);
+				glColor3f(0, 0, 0);
+				DrawQuad({ 0,50,-50 }, 10, true);
+			}
+			glPopMatrix();
+		}
+		for (int i = 0; i < block_count; i++) {
+			glPushMatrix();
+			{
+				glTranslatef(-m_Block[i].GetBlockPos().z / 10,
+					50+(m_Block[i].GetBlockPos().x / 10), 0);
+				glColor3f(0.7, 0.54, 0.15);
+				DrawQuad({ 0,50,-50 }, 10, true);
+
+			}
+			glPopMatrix();
+		}
+
+	}
+	glPopMatrix();
+		glDisable(GL_BLEND);
+	}
+	glPopMatrix();
+
+}
+
 
 void CMainGameScene::SetStage()
 {
-	
+
 	ifstream ifs("stage_set.txt");
-	
+
 	int Stage_count;
 	int b_count;
 	int x, y, z;

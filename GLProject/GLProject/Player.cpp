@@ -32,6 +32,7 @@ void CPlayer::Update()
 		}
 		preposition = position;
 		position += Speed*movevec;
+		angle_annie = (angle_annie + angle_speed) % 360;
 		if (position.y <= -300)
 		{
 			isDie = true;
@@ -58,6 +59,7 @@ void CPlayer::Update()
 
 void CPlayer::Jump()
 {
+	
 	if (jump_count==0) {
 		Yspeed = 25; 
 		onBlock = false; 
@@ -88,44 +90,42 @@ void CPlayer::RenderDie()
 }
 
 void CPlayer::Render(int view)
-{
-	glPushMatrix();
+{	glPushMatrix();
 	{
 		glColor3f(1.f, 0.37f, 0.37f);
-		glTranslatef(position.x, position.y, position.z);
-		glutSolidSphere(50, 18, 18);
+		glTranslatef(position.x, position.y-15, position.z);
+		glutSolidSphere(35, 18, 18);
 		glColor3f(1.f, 0.f, 0.f);
 		glMultMatrixf(Mat);
-		glutWireSphere(50,18,18);
+		glutWireSphere(35,18,18);
 	}
 	glPopMatrix();
 
 	glPushMatrix();
 	{
-		glTranslatef(position.x, position.y, position.z);
+		glTranslatef(position.x, position.y-15, position.z);
 		glRotatef(90, 1, 0, 0);
 		glColor3f(1.f, 1.f, 1.f);
-		glutSolidTorus(10, 50, 8, 18);
+		glutSolidTorus(8, 32, 8, 18);
 		
-		glColor3f(0.f, 1.f, 0.f);
-		glutWireTorus(10, 50, 8, 18);
 	}
 	glPopMatrix();
 	glPushMatrix();
 	{
-		glTranslatef(position.x, position.y, position.z);
+		glTranslatef(position.x, position.y-15, position.z);
+		glRotatef(angle_annie, 0, 1, 0);
 		for (int i = 0; i < 9; i++) {
 			glPushMatrix();
 			{
 				glRotatef(40*i, 0, 1, 0);
-				glTranslatef(60, 0, 0);
+				glTranslatef(38, 0, 0);
 				glColor3f(1.f, 1.f, 1.f);
-				glutSolidCube(20);
-				glColor3f(1.f, 1.f, 1.f);
-				glutWireCube(20);
+				glutSolidCube(15);
+				glColor3f(0.f, 1.f, 0.f);
+				glutWireCube(15);
 			}
 			glPopMatrix();
-		}
+		}glColor3f(1.f, 1.f, 1.f);
 	}
 	glPopMatrix();
 }

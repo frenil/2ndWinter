@@ -10,7 +10,7 @@ private:
 	bool isDie{ false };
 	Vec3f position;
 	Vec3f vertex;
-	Vec3f size{ 100,100,100 };
+	Vec3f size{ 100,90,100 };
 	bool collide{ false }; 
 public:
 	CMush();

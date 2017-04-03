@@ -15,8 +15,13 @@ CTitleScene::~CTitleScene()
 void CTitleScene::Update()
 {
 	m_fFadeIn += 0.016;
-	if (m_fFadeIn > 1.5f)
+	if (m_fFadeIn > 1.5f&&state!=2) {
 		state = 1;
+	}
+	if (m_fFadeIn >= 10) {
+		state = 0;
+		m_fFadeIn = 0;
+	}
 }
 
 void CTitleScene::Render()
@@ -32,6 +37,9 @@ void CTitleScene::Render()
 		}
 		else if (state == 1) {
 			m_Title.LoadTexture(0);
+		}
+		else if (state == 2) {
+			m_Help.LoadTexture(0);
 		}
 		glBegin(GL_QUADS);
 		{
@@ -53,7 +61,7 @@ void CTitleScene::Reshape()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	glOrtho(0, sz.x, sz.y, 0, -1, 1);
+	glOrtho(0, sz.x, sz.y, 0, -500, 500);
 	glMatrixMode(GL_MODELVIEW);
 
 }
@@ -82,15 +90,19 @@ void CTitleScene::BuildScene(CGLFramework * pframework, int tag)
 	Reshape();
 	m_texLogo.SetTexture(L"image/warp_small.png");
 	m_Title.SetTexture(L"image/title.png");
+	m_Help.SetTexture(L"image/help.png");
 }
 
 void CTitleScene::Keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case ' ':
-		if (state == 1) {
+		if (state >= 1) {
 			m_pMasterFramework->BuildScene<CMainGameScene>();
 		}
+	case 'i':
+	case 'I':
+		state = 2;
 	default:
 		break;
 	}

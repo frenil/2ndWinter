@@ -52,6 +52,9 @@
     <Filter Include="Resource">
       <UniqueIdentifier>{956e2e36-6eeb-403a-b8d3-113573c1ab5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Map">
+      <UniqueIdentifier>{bb832709-72e8-4f5c-8e2e-96d9ad88e0cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

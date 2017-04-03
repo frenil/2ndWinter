@@ -25,7 +25,7 @@ public:
 	void LookAt();
 	void SetTilte();
 	void nZoom(bool In, float length = 0.1f) { m_fZoom += (In ? -1 : 1)*length; LookAt();}
-
+	Vec3f GetPos() { return m_ptPosition; }
 
 };
 

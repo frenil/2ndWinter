@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Player.h"
 #include "TextureLib.h"
 
 class CTitleScene :
@@ -25,6 +26,7 @@ private:
 	Point2f			m_ptPos{ 100,100 };
 	CTextureLibraray m_texLogo;
 	CTextureLibraray m_Title;
+	CTextureLibraray m_Help;
 
 };
 
