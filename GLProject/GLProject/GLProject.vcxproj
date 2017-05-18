@@ -152,6 +152,7 @@
     <ClCompile Include="Mrender.cpp" />
     <ClCompile Include="Mush.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SaveKey.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TextureLib.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Mrender.h" />
     <ClInclude Include="Mush.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SaveKey.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="stdafx.h" />

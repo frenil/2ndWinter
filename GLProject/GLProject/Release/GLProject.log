@@ -1,10 +1,9 @@
 ﻿  MainGameScene.cpp
-LINK : warning C4727: 타임스탬프가 동일한 c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\release\glproject.pch PCH가 c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\release\mush.obj 및 c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\release\mrender.obj에 있습니다.  첫 번째 PCH를 사용합니다.
-LINK : warning C4727: 타임스탬프가 동일한 c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\release\glproject.pch PCH가 c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\release\stage.obj 및 c:\users\hwihyun\desktop\16년도2학기\dimension roller\glproject\release\scene.obj에 있습니다.  첫 번째 PCH를 사용합니다.
+MainGameScene.cpp(534): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
   코드를 생성하고 있습니다.
-  2 of 716 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 848 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    3 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\16년도2학기\Dimension Roller\Release\GLProject.exe
-  GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\16년도2학기\Dimension Roller\Release\GLProject.pdb (Full PDB)
+  GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\16년도2학기\2ndWinter\GLProject\Release\GLProject.exe
+  GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\16년도2학기\2ndWinter\GLProject\Release\GLProject.pdb (Full PDB)

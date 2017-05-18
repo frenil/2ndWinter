@@ -99,6 +99,13 @@ void CTitleScene::Keyboard(unsigned char key, int x, int y)
 	case ' ':
 		if (state >= 1) {
 			m_pMasterFramework->BuildScene<CMainGameScene>();
+			m_pMasterFramework->SetState(PLAY);
+		}
+	case 'r':
+	case 'R':
+		if (state >= 1) {
+			m_pMasterFramework->BuildScene<CMainGameScene>();
+			m_pMasterFramework->SetState(REPLAY);
 		}
 	case 'i':
 	case 'I':

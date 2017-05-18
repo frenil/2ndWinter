@@ -9,6 +9,7 @@
 #include "Stage.h"
 #include "Drender.h"
 #include "TextureLoad.h"
+#include "SaveKey.h"
 
 class CMainGameScene :
 	public CScene
@@ -29,13 +30,21 @@ public:
 	virtual void BuildScene(	  CGLFramework* pframework
 								, int tag
 	);
+	void ReadSave();
 	void Sky();
+	void SaveKey(int,int);
+	void KeyConfirm();
 	void ChangeStage();
 	void RenderDestinate();
 	void Mini(Vec3f player, Vec3f pvec);
 	COLLIDETYPE ResetCollide() {return COLLIDETYPE{ false,false, false, false }; }
 	void SetStage();
 private:
+
+	std::chrono::time_point<std::chrono::system_clock> Tstart ;
+	int				gametype;
+	list<Key>		replay;
+	CSaveKey		m_saveKey;
 	CExitCube		drender;
 	CPlayer			m_player;
 	CCamera			m_Camera;
@@ -48,6 +57,10 @@ private:
 	CTextureLoad m_Text;
 	CTextureLibraray m_texLogo;
 	CTextureLibraray m_End;
+	
+	bool isKeyDown[2]{ false,false };
+	int isMoveDown[4]{ INIT,INIT,INIT,INIT };
+
 	bool isEnd = false;
 	bool isClear = false;
 	int block_count = 0;

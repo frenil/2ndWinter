@@ -6,13 +6,22 @@
 #include <fstream>
 #include <cassert>
 #include <ctime>
+#include <list>
+#include <chrono>
 
+#include <algorithm>
+#include <Windows.h>
 #include "Vector3D.h"
 
 using namespace std;
 using std::ifstream;
 using std::ofstream;
 
+enum {PLAY,REPLAY};
+enum {SUP,SDOWN,SLEFT,SRIGHT,SSPACE,SZ};
+enum {PDOWN, INIT,PUP};
+enum {KEYSPACE,KEYZ };
+enum {MUP,MDOWN,MLEFT,MRIGHT};
 enum { UP = 1, DOWN = -1, ZSIDE = 2, XSIDE = 3 };
 struct COLLIDETYPE {
 	bool UP;

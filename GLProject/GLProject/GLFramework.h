@@ -12,6 +12,8 @@ private:
 	Point2i m_ptWindowSize	{ CLIENTWIDTH		, CLIENTHEIGHT };
 	int		m_iFPS			= GAMEFPS;
 
+	int		Scenestate		{0};
+
 	void	(*m_pfReshape)(int w, int h)		{ nullptr } ;
 	void	(*m_pfDrawScene)()					{ nullptr } ;
 	void	(*m_pfTimer)(int val)				{ nullptr } ;
@@ -44,7 +46,8 @@ public:
 	GLvoid Run();
 
 	Point2i GetWindowSize() const { return m_ptWindowSize; }
-
+	int GetState() const { return Scenestate; }
+	void SetState(int s) { Scenestate = s; }
 	void SetReshapeFunc	(void(*func)(int, int))				{ m_pfReshape = func; }
 	void SetDrawFunc	(void(*func)())						{ m_pfDrawScene = func; }
 	void SetTimerFunc	(void(*func)(int))					{ m_pfTimer = func; }
