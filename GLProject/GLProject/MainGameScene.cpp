@@ -410,9 +410,8 @@ void CMainGameScene::ReadSave()
 	auto msec = chrono::duration_cast<chrono::milliseconds>(diff);
 	Key temp;
 	float timesec = msec.count();
-	while (!m_saveKey.isEnd()) {
-		if (timesec < m_saveKey.GetTime())
-			break;
+	if (!m_saveKey.isEnd() && timesec > m_saveKey.GetTime())
+	{
 		temp = m_saveKey.POPKey();
 		if (temp.GetName() >= 0 && temp.GetName() <= 3) {
 			isMoveDown[temp.GetName()] = temp.GetCondition();
@@ -421,6 +420,7 @@ void CMainGameScene::ReadSave()
 			isKeyDown[temp.GetName() - 4] = temp.GetCondition();
 		}
 	}
+	
 	if (m_saveKey.isEnd()) {
 		for (int i = 0; i < 4; ++i) {
 			isMoveDown[i] = INIT;

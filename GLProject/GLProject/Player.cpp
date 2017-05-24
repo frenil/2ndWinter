@@ -24,15 +24,15 @@ void CPlayer::Update(float deltatime)
 	if (!isDie)
 	{
 		if (!onBlock) {
-			position.y += Yspeed;
+			position.y += Yspeed *deltatime/25;
 			Yspeed -= 1;
 		}
 		else {
 			Yspeed = 0;
 		}
 		preposition = position;
-		position += (Speed*deltatime/10)*movevec;
-		angle_annie = (angle_annie + angle_speed) / 10 % 360;
+		position += (Speed*deltatime/25)*movevec;
+		angle_annie = (angle_annie + angle_speed) / 50 % 360;
 		if (position.y <= -300)
 		{
 			isDie = true;
