@@ -29,6 +29,7 @@ public:
 
 	virtual void BuildScene(	  CGLFramework* pframework
 								, int tag
+								, int state
 	);
 	void ReadSave();
 	void Sky();
@@ -63,6 +64,10 @@ private:
 
 	bool isEnd = false;
 	bool isClear = false;
+	
+	float deltatime{ 0 };
+	float beforeatime{0};
+
 	int block_count = 0;
 	int wall_count = 0;
 	int mush_count = 0;

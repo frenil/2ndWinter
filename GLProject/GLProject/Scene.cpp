@@ -53,8 +53,9 @@ void CScene::SpecialKeyUp(int key, int x, int y)
 {
 }
 
-void CScene::BuildScene(CGLFramework * pframework, int tag)
+void CScene::BuildScene(CGLFramework * pframework, int tag, int state)
 {
 	m_pMasterFramework = pframework;
+	State = state;
 	m_iTag = tag;
 }

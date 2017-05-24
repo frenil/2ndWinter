@@ -84,6 +84,11 @@ COLLIDETYPE CMainGameScene::Collide(Vec3f player, Vec3f player_size, Vec3f objec
 
 void CMainGameScene::Update()
 {
+	auto end = chrono::system_clock::now();
+	auto diff = end - Tstart;
+	auto msec = chrono::duration_cast<chrono::milliseconds>(diff);
+	beforeatime = msec.count();
+
 	if(gametype==REPLAY)
 		ReadSave();
 	KeyConfirm();
@@ -186,7 +191,7 @@ void CMainGameScene::Update()
 				m_Mush[i].Live();
 			}
 		}
-		m_player.Update();
+		m_player.Update(beforeatime-deltatime);
 		m_Camera.SetView(ViewType, m_player.GetPosition());
 
 		Ctype = ResetCollide();
@@ -220,6 +225,7 @@ void CMainGameScene::Update()
 		glMatrixMode(GL_MODELVIEW);
 
 	}
+	deltatime = beforeatime;
 }
 void CMainGameScene::Render()
 {
@@ -323,19 +329,23 @@ void CMainGameScene::SpecialKeyboard(int key, int x, int y)
 {
 		switch (key) {
 		case GLUT_KEY_UP:
-			SaveKey(SUP, PDOWN);
+			if (!m_saveKey.isEqual(SUP, PDOWN))
+				SaveKey(SUP, PDOWN);
 			isMoveDown[MUP] = PDOWN;
 			break;
 		case GLUT_KEY_DOWN:
-			SaveKey(SDOWN, PDOWN);
+			if (!m_saveKey.isEqual(SDOWN,PDOWN))
+				SaveKey(SDOWN, PDOWN);
 			isMoveDown[MDOWN] = PDOWN;
 			break;
 		case GLUT_KEY_LEFT:
-			SaveKey(SLEFT, PDOWN);
+			if (!m_saveKey.isEqual(SLEFT, PDOWN))
+				SaveKey(SLEFT, PDOWN);
 			isMoveDown[MLEFT] = PDOWN;
 			break;
 		case GLUT_KEY_RIGHT:
-			SaveKey(SRIGHT, PDOWN);
+			if (!m_saveKey.isEqual(SRIGHT, PDOWN))
+				SaveKey(SRIGHT, PDOWN);
 			isMoveDown[MRIGHT] = PDOWN;
 			break;
 		default:
@@ -348,34 +358,39 @@ void CMainGameScene::SpecialKeyUp(int key, int x, int y)
 
 		switch (key) {
 		case GLUT_KEY_UP:
-		case GLUT_KEY_DOWN:
 			isMoveDown[MUP] = PUP;
+			if(!m_saveKey.isEqual(SUP,PUP))
+				SaveKey(SUP, PUP);
+			break;
+		case GLUT_KEY_DOWN:
 			isMoveDown[MDOWN] = PUP;
-			SaveKey(SUP, PUP);
-			SaveKey(SDOWN, PUP);
+			if (!m_saveKey.isEqual(SDOWN, PUP))
+				SaveKey(SDOWN, PUP);
 			break;
 		case GLUT_KEY_LEFT:
-			SaveKey(SLEFT, PUP);
 			isMoveDown[MLEFT] = PUP;
+			if (!m_saveKey.isEqual(SLEFT, PUP))
+				SaveKey(SLEFT, PUP);
 			break;
 		case GLUT_KEY_RIGHT:
-			SaveKey(SRIGHT, PUP);
 			isMoveDown[MRIGHT] = PUP;
+			if (!m_saveKey.isEqual(SRIGHT, PUP))
+				SaveKey(SRIGHT, PUP);
 			break;
 		default:
 			break;
 		}
 }
 
-void CMainGameScene::BuildScene(CGLFramework * pframework, int tag)
+void CMainGameScene::BuildScene(CGLFramework * pframework, int tag, int state)
 {
-	CScene::BuildScene(pframework, tag);
+	CScene::BuildScene(pframework, tag,state);
 	glClearColor(0.5, 0.5, 0.8, 1);
 	SetStage();
 	ChangeStage();
 	m_Text.Loading();
 	m_End.SetTexture(L"image/Clear.png");
-	gametype = REPLAY;
+	gametype = state;
 	if (gametype == REPLAY) {
 		m_saveKey.KeyLoad();
 	}
@@ -394,14 +409,21 @@ void CMainGameScene::ReadSave()
 	auto diff = end - Tstart;
 	auto msec = chrono::duration_cast<chrono::milliseconds>(diff);
 	Key temp;
-
-	while (m_saveKey.GetTime() > msec.count() || !m_saveKey.isEnd()) {
+	float timesec = msec.count();
+	while (!m_saveKey.isEnd()) {
+		if (timesec < m_saveKey.GetTime())
+			break;
 		temp = m_saveKey.POPKey();
 		if (temp.GetName() >= 0 && temp.GetName() <= 3) {
 			isMoveDown[temp.GetName()] = temp.GetCondition();
 		}
 		else {
 			isKeyDown[temp.GetName() - 4] = temp.GetCondition();
+		}
+	}
+	if (m_saveKey.isEnd()) {
+		for (int i = 0; i < 4; ++i) {
+			isMoveDown[i] = INIT;
 		}
 	}
 }
@@ -447,8 +469,8 @@ void CMainGameScene::KeyConfirm()
 	{
 		if (isEnd) {
 			if (gametype == PLAY)
-				//	m_saveKey.KeySave();
-				m_pMasterFramework->BuildScene<CTitleScene>();
+				m_saveKey.KeySave();
+			m_pMasterFramework->BuildScene<CTitleScene>();
 			glutMainLoop();
 		}
 		else {
@@ -490,9 +512,23 @@ void CMainGameScene::KeyConfirm()
 			m_player.Move_X(1);
 		}
 	}
+	else if (isMoveDown[MUP] == PUP) {
+		if (ViewType == 0) {
+			m_player.Move_X(0);
+		SaveKey(SUP, INIT);
+		isMoveDown[MUP] = INIT;
+		}
+	}
 	if (isMoveDown[MDOWN] == PDOWN) {
 		if (ViewType == 0) {
 			m_player.Move_X(-1);
+		}
+	}
+	else if (isMoveDown[MDOWN] == PUP) {
+		if (ViewType == 0) {
+			m_player.Move_X(0);
+		SaveKey(SDOWN, INIT);
+		isMoveDown[MDOWN] = INIT;
 		}
 	}
 	if (isMoveDown[MLEFT] == PDOWN) {
@@ -510,8 +546,8 @@ void CMainGameScene::KeyConfirm()
 		else if (ViewType == 1) {
 			m_player.Move_X(0);
 		}
-		SaveKey(SLEFT, INIT);
 		isMoveDown[MLEFT] = INIT;
+		SaveKey(SLEFT, INIT);
 	}
 	if (isMoveDown[MRIGHT] == PDOWN) {
 		if (ViewType == 0) {
@@ -528,17 +564,8 @@ void CMainGameScene::KeyConfirm()
 		else if (ViewType == 1) {
 			m_player.Move_X(0);
 		}
-		SaveKey(SRIGHT, INIT);
 		isMoveDown[MRIGHT] = INIT;
-	}
-	if (isMoveDown[MUP] == PUP || !isMoveDown[MDOWN] == PUP) {
-		if (ViewType == 0) {
-			m_player.Move_X(0);
-		}
-		SaveKey(SUP, INIT);
-		SaveKey(SDOWN, INIT);
-		isMoveDown[MUP] = INIT;
-		isMoveDown[MDOWN] = INIT;
+		SaveKey(SRIGHT, INIT);
 	}
 }
 

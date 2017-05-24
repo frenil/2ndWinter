@@ -18,6 +18,7 @@ public:
 	virtual void Keyboard(unsigned char key, int x, int y);
 	virtual void BuildScene(CGLFramework* pframework
 		, int tag
+		, int state
 	);
 
 private:

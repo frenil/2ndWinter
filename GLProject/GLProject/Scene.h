@@ -20,6 +20,7 @@ public:
 	virtual void SpecialKeyUp(int key, int x, int y);
 	virtual void BuildScene(	  CGLFramework* pframework
 								, int tag
+		, int state
 	);
 
 	bool MatchTag(const int tag) const { return { tag == m_iTag }; }
@@ -29,6 +30,6 @@ protected:
 
 	CGLFramework*	m_pMasterFramework;
 	int				m_iTag;	
-
+	int				State;
 };
 

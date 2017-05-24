@@ -1,9 +1,8 @@
-﻿  MainGameScene.cpp
-MainGameScene.cpp(534): warning C4806: '==': 안전하지 않은 연산입니다. 'bool' 형식의 값('' 형식으로 확장)이 주어진 상수와 같을 수 없습니다.
+﻿  Player.cpp
   코드를 생성하고 있습니다.
-  1 of 848 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 852 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\16년도2학기\2ndWinter\GLProject\Release\GLProject.exe
   GLProject.vcxproj -> C:\Users\Hwihyun\Desktop\16년도2학기\2ndWinter\GLProject\Release\GLProject.pdb (Full PDB)

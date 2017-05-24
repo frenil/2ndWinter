@@ -20,7 +20,7 @@ class CPlayer
 public:
 	CPlayer();
 	~CPlayer();
-	void Update();
+	void Update(float deltatime);
 	void SetSpeed(int x){ Yspeed = x; }
 	void Jump();
 	void init();

@@ -62,7 +62,7 @@ public:
 		m_arrScene[m_nSceneIdx] = new CreateScene();
 		auto pScene = static_cast<CreateScene* >(m_arrScene[m_nSceneIdx]);
 
-		pScene->BuildScene(this, m_nSceneIdx);
+		pScene->BuildScene(this, m_nSceneIdx,Scenestate);
 
 		if (SelectNewScene)
 			m_pCurrentScene = pScene;

@@ -33,5 +33,7 @@ public:
 	void Clear() { savebutton.clear(); }
 	bool isEnd() { return (savebutton.begin() == savebutton.end()); }
 	float GetTime() { return savebutton.front().GetTime(); }
+	bool isEqual(int name, int con) { return (savebutton.back().GetName()==name
+		&&savebutton.back().GetCondition()==con); }
 };
 

@@ -19,7 +19,7 @@ CPlayer::~CPlayer()
 {
 }
 
-void CPlayer::Update()
+void CPlayer::Update(float deltatime)
 {
 	if (!isDie)
 	{
@@ -31,8 +31,8 @@ void CPlayer::Update()
 			Yspeed = 0;
 		}
 		preposition = position;
-		position += Speed*movevec;
-		angle_annie = (angle_annie + angle_speed) % 360;
+		position += (Speed*deltatime/10)*movevec;
+		angle_annie = (angle_annie + angle_speed) / 10 % 360;
 		if (position.y <= -300)
 		{
 			isDie = true;
@@ -49,7 +49,7 @@ void CPlayer::Update()
 		glPushMatrix();
 		{
 			glLoadIdentity();
-			glRotatef(-5, -movevec.z,0  ,movevec.x );
+			glRotatef(-5*deltatime / 10, -movevec.z,0  ,movevec.x );
 			glMultMatrixf(Mat);
 			glGetFloatv(GL_MODELVIEW_MATRIX, Mat);
 		}

@@ -83,9 +83,9 @@ void CTitleScene::Mouse(int button, int state, int x, int y)
 	}
 }
 
-void CTitleScene::BuildScene(CGLFramework * pframework, int tag)
+void CTitleScene::BuildScene(CGLFramework * pframework, int tag,int state)
 {
-	CScene::BuildScene(pframework, tag);
+	CScene::BuildScene(pframework, tag,state);
 	glClearColor(0.f,0.f,0.f, 1);
 	Reshape();
 	m_texLogo.SetTexture(L"image/warp_small.png");
@@ -98,15 +98,17 @@ void CTitleScene::Keyboard(unsigned char key, int x, int y)
 	switch (key) {
 	case ' ':
 		if (state >= 1) {
-			m_pMasterFramework->BuildScene<CMainGameScene>();
 			m_pMasterFramework->SetState(PLAY);
+			m_pMasterFramework->BuildScene<CMainGameScene>();
 		}
+		break;
 	case 'r':
 	case 'R':
 		if (state >= 1) {
-			m_pMasterFramework->BuildScene<CMainGameScene>();
 			m_pMasterFramework->SetState(REPLAY);
+			m_pMasterFramework->BuildScene<CMainGameScene>();
 		}
+		break;
 	case 'i':
 	case 'I':
 		state = 2;
